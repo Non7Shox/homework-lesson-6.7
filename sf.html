@@ -1,0 +1,13 @@
+from django.http import HttpResponse
+
+def create_pages(request):
+    pages = []
+    for i in range(5):
+        page_content = f"<h1>Page {i+1}</h1>"
+        if i > 0:
+            page_content += f"<a href='/page{i}/'>Previous</a>"
+        if i < 4:
+            page_content += f"<a href='/page{i+2}/'>Next</a>"
+        pages.append(page_content)
+    
+    return HttpResponse('<br>'.join(pages))
